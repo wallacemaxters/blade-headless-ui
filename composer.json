@@ -1,0 +1,27 @@
+{
+    "name": "wallacemaxters/blade-headless-ui",
+    "description": "A package to easy make your ui with tailwindcss",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "WallaceMaxters\\BladeHeadlessUi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wallacemaxters",
+            "email": "wallacemaxters@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require-dev": {
+        "illuminate/support": "^10"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WallaceMaxters\\BladeHeadlessUi\\BladeHeadlessUiServiceProvider"
+            ]
+        }
+    }
+}
