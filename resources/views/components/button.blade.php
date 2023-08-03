@@ -3,4 +3,4 @@
 $tag = $href === null ? 'button' : 'a';
 $config = config('blade-headless-ui.ui.button');
 @endphp
-<{{$tag}} {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>{{ $slot }}</{{$tag}}>
+<{{$tag}} {{ $attributes->class($config['base'])->class(['href' => $href])->class($config['themes'][$theme]) }}>{{ $slot }}</{{$tag}}>
