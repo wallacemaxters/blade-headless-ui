@@ -1,1 +1,5 @@
-<section {{ $attributes->class(config('blade-headless-ui.ui.section.base')) }}>{{ $slot }}</section>
+@props(['theme' => 'normal'])
+@php
+$config = config('blade-headless-ui.components.section');
+@endphp
+<section {{ $attributes->class($config['base'])->class($config['themes'][$theme] ?? null) }}>{{ $slot }}</section>

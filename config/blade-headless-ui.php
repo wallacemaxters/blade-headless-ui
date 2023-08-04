@@ -1,54 +1,79 @@
 <?php
 
-use WallaceMaxters\BladeHeadlessUi\ThemeBuilder;
-
-$shadow  = 'shadow';
-$rounded = 'rounded';
+$shadow  = 'shadow-lg';
+$rounded = 'rounded-lg';
 $duration = 'duration-200';
 
 return [
 
     'namespace' => 'ui',
 
-    'ui' => [
+    'components' => [
 
         'container' => [
-            'base' => 'px-5 lg:px-0 max-w-6xl mx-auto'
+            'base'   => 'px-5 lg:px-0 max-w-6xl mx-auto w-full',
+            'themes' => [
+                'normal' => []
+            ]
         ],
 
-        'button' => ThemeBuilder::make()
-            ->base(['px-5 py-3 duration-500', $rounded])
-            ->theme('default', 'bg-neutral-200 text-neutral-600')
-            ->theme('blue', 'bg-blue-400 hover:bg-blue-600 text-white')
-            ->toArray(),
+        'button' => [
+            'base'   => ['px-5 py-3 duration-500', $rounded],
+            'themes' => [
+                'normal'    => 'bg-neutral-200 text-neutral-600',
+                'blue'      => 'bg-blue-400 hover:bg-blue-600 text-white',
+                'primary'   => 'bg-primary hover:bg-primary text-white',
+                'secondary' => 'bg-secondary hover:bg-zinc-800 text-white',
+            ]
+        ],
 
-        'input' => ThemeBuilder::make()
-            ->base('w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex')
-            ->theme('blue', 'bg-blue-400 hover:bg-blue-600 text-white')
-            ->toArray(),
+        'input' => [
+            'base' => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex',
+            'themes' => [
+                'normal' => [],
+                'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
+            ]
+        ],
 
-        'textarea' => ThemeBuilder::make()
-            ->base('w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex placeholder:font-sans')
-            ->theme('blue', 'bg-blue-400 hover:bg-blue-600 text-white')
-            ->toArray(),
+        'textarea' => [
+            'base'   => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex placeholder:font-sans',
+            'themes' => [
+                'normal' => []
+            ]
+        ],
 
 
         'avatar'    => [
-            'base' => ['rounded-full aspect-square bg-neutral-200 flex items-center justify-center overflow-hidden', $shadow],
-            'image' => 'h-full w-full object-cover object-center'
+            'base' => [
+                'rounded-full',
+                'aspect-square',
+                'bg-neutral-200',
+                'flex items-center justify-center',
+                'overflow-hidden',
+                $shadow
+            ],
+            'image'  => ['h-full w-full', 'object-cover object-center'],
+            'themes' => [
+                'normal' => []
+            ]
         ],
 
 
         'section' => [
-            'base' => 'py-12 lg:py-20'
+            'base' => 'py-12 lg:py-20',
+            'themes' => [
+                'normal' => []
+            ]
         ],
 
-        'card' => ThemeBuilder::make()
-            ->base(['p-4', $shadow, $rounded])
-            ->theme('none', [])
-            ->theme('default', 'bg-white dark:bg-neutral-800')
-            ->theme('blue', 'bg-blue-500 text-white')
-            ->toArray(),
+        'card' => [
+            'base' => [$shadow, $rounded, 'p-8'],
+            'themes' => [
+                'none'   => [],
+                'normal' => ['bg-white dark:bg-neutral-800'],
+                'blue'   => ['bg-blue-500 text-white'],
+            ]
+        ],
 
     ]
 ];

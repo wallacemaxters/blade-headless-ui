@@ -1,7 +1,7 @@
-@props(['theme' => 'default', 'href' => null])
+@props(['href' => null, 'theme' => 'normal'])
 @php
-$config = config('blade-headless-ui.ui.card');
-$tag = $href === null ? 'div' : 'a';
+$config = config('blade-headless-ui.components.card');
+$tag = ($href === null) ? 'div' : 'a';
 
 @endphp
 <{{ $tag }}

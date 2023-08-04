@@ -1,1 +1,5 @@
-<div {{ $attributes->class(config('blade-headless-ui.ui.container.base')) }}>{{ $slot }}</div>
+@props(['theme' => 'normal'])
+@php
+$config = config('blade-headless-ui.components.container');
+@endphp
+<div {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>{{ $slot }}</div>

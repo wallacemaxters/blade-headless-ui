@@ -29,7 +29,7 @@ class BladeHeadlessUiServiceProvider extends ServiceProvider
     {
         $path = __DIR__ . '/../resources/views';
 
-        $namespace = $this->app->config->get('blade-headless-ui.namespace') ?? 'bhui';
+        $namespace = $this->app->config->get('blade-headless-ui.namespace') ?? 'ui';
 
         $this->loadViewsFrom($path, $namespace);
 
