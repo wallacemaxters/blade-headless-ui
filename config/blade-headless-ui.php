@@ -75,5 +75,27 @@ return [
             ]
         ],
 
+        'heading' => [
+            'h1' => [
+                'base' => [
+                    'lg:text-5xl text-3xl',
+                    'font-bold',
+                ],
+                'themes' => [
+                    'normal' => null,
+                    'bold'   => 'font-bold'
+                ]
+            ],
+            'h2' => [
+                'base' => [
+                    'lg:text-3xl text-xl',
+                ],
+                'themes' => [
+                    'normal' => null,
+                    'bold'   => 'font-bold'
+                ]
+            ]
+        ]
+
     ]
 ];
