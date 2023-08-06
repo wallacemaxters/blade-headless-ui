@@ -18,7 +18,7 @@ return [
         ],
 
         'button' => [
-            'base'   => ['px-5 py-3 duration-500', $rounded],
+            'base'   => ['px-5 py-3 duration-500 inline-flex', $rounded],
             'themes' => [
                 'normal'    => 'bg-neutral-200 text-neutral-600',
                 'blue'      => 'bg-blue-400 hover:bg-blue-600 text-white',
