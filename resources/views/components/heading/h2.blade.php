@@ -1,5 +1,6 @@
-@props(['theme' => 'normal'])
 @php
-$config = config('blade-headless-ui.components.heading.h2');
+$name = config('blade-headless-ui.namespace') . '::heading.index';
 @endphp
-<h2 {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>{{ $slot }}</h2>
+<x-dynamic-component :component="$name" tag="h2" {{ $attributes }}>
+{{ $slot }}
+</x-dynamic-component>

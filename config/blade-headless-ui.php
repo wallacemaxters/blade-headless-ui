@@ -45,11 +45,17 @@ return [
             ]
         ],
 
+
         'textarea' => [
             'base'   => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex placeholder:font-sans',
             'themes' => [
                 'normal' => []
             ]
+        ],
+
+
+        'label' => [
+            'base' => 'block'
         ],
 
 
@@ -88,23 +94,36 @@ return [
         'heading' => [
             'h1' => [
                 'base' => [
-                    'lg:text-5xl text-3xl',
-                    'font-bold',
+                    'text-5xl',
                 ],
-                'themes' => [
-                    'normal' => null,
-                    'bold'   => 'font-bold'
-                ]
+                'themes' => []
             ],
             'h2' => [
                 'base' => [
-                    'lg:text-3xl text-xl',
+                    'text-4xl',
                 ],
-                'themes' => [
-                    'normal' => null,
-                    'bold'   => 'font-bold'
-                ]
-            ]
+                'themes' => []
+            ],
+
+            'h3' => [
+                'base' => 'text-3xl',
+                'themes' => []
+            ],
+
+            'h4' => [
+                'base'   => 'text-2xl',
+                'themes' => []
+            ],
+
+            'h5' => [
+                'base' => 'text-xl',
+                'themes' => []
+            ],
+
+            'h6' => [
+                'base' => 'text-lg',
+                'themes' => []
+            ],
         ]
 
     ]
