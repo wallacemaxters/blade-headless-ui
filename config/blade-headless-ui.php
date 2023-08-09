@@ -27,8 +27,18 @@ return [
             ]
         ],
 
+        'select' => [
+            'wrapper' => 'relative flex items-center',
+            'arrow'   => 'absolute right-3 pointer-events-none dark:text-white text-neutral-800',
+            'base' => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex bg-white outline-none appearance-none font-sans',
+            'themes' => [
+                'normal' => [],
+                'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
+            ]
+        ],
+
         'input' => [
-            'base' => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex',
+            'base' => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex bg-white outline-none',
             'themes' => [
                 'normal' => [],
                 'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
