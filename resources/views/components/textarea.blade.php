@@ -1,4 +1,4 @@
-@props(['theme' => 'base', 'value' => null])
+@props(['theme' => 'normal', 'value' => null])
 @php
 $config = config('blade-headless-ui.components.textarea');
 @endphp
