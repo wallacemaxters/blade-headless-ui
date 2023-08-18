@@ -2,7 +2,7 @@
 
 namespace WallaceMaxters\BladeHeadlessUi;
 use Illuminate\Support\ServiceProvider;
-
+use WallaceMaxters\BladeHeadlessUi\Commands\MakeConfig;
 
 class BladeHeadlessUiServiceProvider extends ServiceProvider
 {
@@ -11,6 +11,16 @@ class BladeHeadlessUiServiceProvider extends ServiceProvider
     {
         $this->loadConfig();
         $this->loadViews();
+        $this->loadCommands();
+    }
+
+    protected function loadCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                MakeConfig::class
+            ]);
+        }
     }
 
     protected function loadConfig()
