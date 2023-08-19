@@ -7,6 +7,8 @@ use WallaceMaxters\BladeHeadlessUi\Commands\MakeConfig;
 class BladeHeadlessUiServiceProvider extends ServiceProvider
 {
 
+    public static string $name = 'blade-headless-ui';
+
     public function boot()
     {
         $this->loadConfig();
@@ -25,13 +27,13 @@ class BladeHeadlessUiServiceProvider extends ServiceProvider
 
     protected function loadConfig()
     {
-        $path = __DIR__ . '/../config/blade-headless-ui.php';
+        $path = __DIR__ . sprintf('/../config/%s.php', static::$name);
 
-        $this->mergeConfigFrom($path, 'blade-headless-ui');
+        $this->mergeConfigFrom($path, static::$name);
 
         $this->publishes([
-            $path => config_path('blade-headless-ui.php')
-        ]);
+            $path => config_path(static::$name . '.php')
+        ], static::$name . '-config');
 
     }
 
@@ -39,12 +41,12 @@ class BladeHeadlessUiServiceProvider extends ServiceProvider
     {
         $path = __DIR__ . '/../resources/views';
 
-        $namespace = $this->app->config->get('blade-headless-ui.namespace') ?? 'ui';
+        $namespace = $this->app->config->get(static::$name . '.namespace') ?? 'ui';
 
         $this->loadViewsFrom($path, $namespace);
 
         $this->publishes([
-            $path => resource_path('views/vendor/blade-headless-ui'),
-        ]);
+            $path => resource_path('views/vendor/' . static::$name),
+        ], static::$name . '-views');
     }
 }
