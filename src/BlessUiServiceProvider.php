@@ -1,13 +1,13 @@
 <?php
 
-namespace WallaceMaxters\BladeHeadlessUi;
+namespace WallaceMaxters\BlessUi;
+
 use Illuminate\Support\ServiceProvider;
-use WallaceMaxters\BladeHeadlessUi\Commands\MakeConfig;
+use WallaceMaxters\BlessUi\Commands\MakeConfig;
 
-class BladeHeadlessUiServiceProvider extends ServiceProvider
+class BlessUiServiceProvider extends ServiceProvider
 {
-
-    public static string $name = 'blade-headless-ui';
+    public static string $name = 'bless-ui';
 
     public function boot()
     {
@@ -34,7 +34,6 @@ class BladeHeadlessUiServiceProvider extends ServiceProvider
         $this->publishes([
             $path => config_path(static::$name . '.php')
         ], static::$name . '-config');
-
     }
 
     protected function loadViews()

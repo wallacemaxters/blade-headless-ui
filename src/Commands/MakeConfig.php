@@ -1,10 +1,11 @@
 <?php
 
-namespace WallaceMaxters\BladeHeadlessUi\Commands;
+namespace WallaceMaxters\BlessUi\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\VarExporter\VarExporter;
 
 class MakeConfig extends Command
 {
@@ -13,7 +14,7 @@ class MakeConfig extends Command
      *
      * @var string
      */
-    protected $signature = 'make:config-headless-ui {--merge=0}';
+    protected $signature = 'bless-ui:make-config {--merge=0}';
 
     /**
      * The console command description.
@@ -32,11 +33,11 @@ class MakeConfig extends Command
         $isMerge = filter_var($this->option('merge'), FILTER_VALIDATE_BOOL);
 
         $paths = Finder::create()
-                    ->files()
-                    ->ignoreDotFiles(true)
-                    ->in($path)
-                    // ->name('*.blade.php')
-                    ->sortByName();
+            ->files()
+            ->ignoreDotFiles(true)
+            ->in($path)
+            // ->name('*.blade.php')
+            ->sortByName();
 
         $result = [];
 
@@ -50,13 +51,13 @@ class MakeConfig extends Command
             $config = null;
 
             if ($isMerge) {
-                $config = config('blade-headless-ui.components.' . $configKey);
+                $config = config('bless-uicomponents.' . $configKey);
             }
 
             $itemConfig = $config ?? [
                 'base'   => $key ? sprintf('ui-%s-%s', $key, $value) : 'ui-' . $value,
                 'themes' => [
-                    'normal' => null
+                    'normal' => []
                 ]
             ];
 
@@ -67,30 +68,18 @@ class MakeConfig extends Command
             }
         }
 
-        File::put(config_path('blade-headless-ui.php'), $this->arrayToCode($result));
+        File::put(config_path('bless-uiphp'), $this->arrayToCode($result));
     }
 
     protected function arrayToCode(array $array): string
     {
-        $config = ['namespace' => config('blade-headless-ui.namespace'), 'components' => $array];
+        $config = [
+            'namespace'  => config('bless-uinamespace'),
+            'components' => $array
+        ];
 
-        $export = $this->shorthandVarExport($config);
+        $export = VarExporter::export($config);
 
         return "<?php \nreturn {$export};\n";
     }
-
-    public function shorthandVarExport ($expression): string {
-
-        $export = var_export($expression, true);
-
-        $patterns = [
-            '/array \(/' => '[',
-            '/^([ ]*)\)(,?)$/m' => '$1]$2',
-        ];
-
-        $output = preg_replace(array_keys($patterns), array_values($patterns), $export);
-
-        return $output;
-    }
-
 }

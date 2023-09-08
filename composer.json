@@ -1,10 +1,11 @@
 {
-    "name": "wallacemaxters/blade-headless-ui",
-    "description": "A package to easy make your ui with tailwindcss",
+    "name": "wallacemaxters/bless-ui",
+    "keywords": ["blade", "tailwindcss", "ui"],
+    "description": "The Bless UI is a package to make easy your ui elements with tailwindcss or another framework",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "WallaceMaxters\\BladeHeadlessUi\\": "src/"
+            "WallaceMaxters\\BlessUi\\": "src/"
         }
     },
     "authors": [
@@ -20,8 +21,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WallaceMaxters\\BladeHeadlessUi\\BladeHeadlessUiServiceProvider"
+                "WallaceMaxters\\BlessUi\\BlessUiServiceProvider"
             ]
         }
+    },
+    "require": {
+        "symfony/var-exporter": "^6.3"
     }
 }

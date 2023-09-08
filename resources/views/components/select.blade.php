@@ -1,6 +1,6 @@
 @props(['theme' => 'normal'])
 @php
-$config = config('blade-headless-ui.components.select');
+$config = config('bless-ui.components.select');
 @endphp
 <div @class($config['wrapper'])>
     <select {{ $attributes->class($config['base'])->class($config['themes'][$theme] ?? null) }}>{{ $slot }}</select>

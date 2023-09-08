@@ -1,6 +1,6 @@
 @props(['src' => null, 'text' => null, 'theme' => 'normal'])
 @php
-$config = config('blade-headless-ui.components.avatar');
+$config = config('bless-ui.components.avatar');
 @endphp
 
 <div {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>
