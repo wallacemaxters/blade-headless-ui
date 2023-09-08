@@ -1,17 +1,17 @@
 ## Install
 
 ```bash
-composer require wallacemaxters/blade-headless-ui 
+composer require wallacemaxters/bless-ui 
 ```
 
 ## Usage
 
 ```bash
-php artisan vendor:publish --tag=blade-headless-ui-config
+php artisan vendor:publish --tag=bless-ui-config
 ```
-The command above will generate a `config/blade-headless-ui.php` file.
+The command above will generate a `config/bless-ui.php` file.
 
-You can modify the classes and themes definitions for all Blade Headless Ui components.
+You can modify the classes and themes definitions for all Bless Ui components.
 
 ```php
 return [

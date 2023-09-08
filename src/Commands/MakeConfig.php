@@ -21,7 +21,7 @@ class MakeConfig extends Command
      *
      * @var string
      */
-    protected $description = 'Generate a empty config for blade-headless-ui component';
+    protected $description = 'Generate a empty config for bless-ui component';
 
     /**
      * Execute the console command.
@@ -51,7 +51,7 @@ class MakeConfig extends Command
             $config = null;
 
             if ($isMerge) {
-                $config = config('bless-uicomponents.' . $configKey);
+                $config = config('bless-ui.components.' . $configKey);
             }
 
             $itemConfig = $config ?? [
@@ -68,13 +68,13 @@ class MakeConfig extends Command
             }
         }
 
-        File::put(config_path('bless-uiphp'), $this->arrayToCode($result));
+        File::put(config_path('bless-ui.php'), $this->arrayToCode($result));
     }
 
     protected function arrayToCode(array $array): string
     {
         $config = [
-            'namespace'  => config('bless-uinamespace'),
+            'namespace'  => config('bless-ui.namespace'),
             'components' => $array
         ];
 
