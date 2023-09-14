@@ -28,25 +28,19 @@ class MakeConfig extends Command
      */
     public function handle()
     {
-        $path = __DIR__ . '/../../resources/views/components/';
-
         $isMerge = filter_var($this->option('merge'), FILTER_VALIDATE_BOOL);
-
-        $paths = Finder::create()
-            ->files()
-            ->ignoreDotFiles(true)
-            ->in($path)
-            // ->name('*.blade.php')
-            ->sortByName();
 
         $result = [];
 
-        foreach ($paths as $item) {
+        foreach (ListComponents::getComponents() as $item) {
 
-            $value = $item->getBasename('.blade.php');
-            $key = $item->getRelativePath();
+            [$value, $key] = ListComponents::getComponentInfoFromFile($item);
 
-            $configKey = $key ? $key . '.' . $value : $value;
+            $configKey = ListComponents::getComponentNameFromFile(
+                $item,
+                namespace: false,
+                ignoreIndex: false
+            );
 
             $config = null;
 

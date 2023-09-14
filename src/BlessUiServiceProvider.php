@@ -3,6 +3,7 @@
 namespace WallaceMaxters\BlessUi;
 
 use Illuminate\Support\ServiceProvider;
+use WallaceMaxters\BlessUi\Commands\ListComponents;
 use WallaceMaxters\BlessUi\Commands\MakeConfig;
 
 class BlessUiServiceProvider extends ServiceProvider
@@ -20,7 +21,8 @@ class BlessUiServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                MakeConfig::class
+                MakeConfig::class,
+                ListComponents::class
             ]);
         }
     }
