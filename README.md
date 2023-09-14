@@ -6,12 +6,25 @@ composer require wallacemaxters/bless-ui
 
 ## Usage
 
+Publish the config for customize.
+
 ```bash
 php artisan vendor:publish --tag=bless-ui-config
 ```
 The command above will generate a `config/bless-ui.php` file.
 
-You can modify the classes and themes definitions for all Bless Ui components.
+If you are using the Tailwindcss, add the `config/bless-ui.php` to your `content` key of configuration of `tailwind.config.js` file.
+
+```js
+export default {
+  content: [
+    // ... another configs
+    'config/bless-ui.php'
+  ]
+}
+```
+
+Now, you can modify the classes and themes definitions for all Bless Ui components.
 
 ```php
 return [
@@ -27,6 +40,10 @@ return [
 ];
 ```
 
+The `button` key will be change `x-ui::button` component.
+
+
+## Calling the components
 
 ```php
 <x-ui::section theme="gradient" class="text-white">
