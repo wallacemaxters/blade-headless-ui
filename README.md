@@ -1,6 +1,6 @@
 # Laravel BlessUI
 
-The Bless UI package is a set of *headless* components whose styles can be modified via a configuration file. This allows you to create styles for components previously defined by Bless UI, without worrying about their behavior.
+The Bless UI package is a set of _headless_ components whose styles can be modified via a configuration file. This allows you to create styles for components previously defined by Bless UI, without worrying about their behavior.
 
 Bless UI works perfectly with Tailwindcss, but it is also possible to define style classes from other css frameworks.
 
@@ -9,16 +9,15 @@ Bless UI works perfectly with Tailwindcss, but it is also possible to define sty
 To install Bless UI in your Laravel application, you need to use composer, as follows:
 
 ```bash
-composer require wallacemaxters/bless-ui 
+composer require wallacemaxters/bless-ui
 ```
 
 After installation, you can make the components available for use in your Blade Views through the `bless-ui:list-components` command.
 
 ## Components Avaliable
 
-
 | Components     |
-|----------------|
+| -------------- |
 | ui::avatar     |
 | ui::button     |
 | ui::card       |
@@ -40,10 +39,10 @@ After installation, you can make the components available for use in your Blade 
 
 To start using Bless UI, you need to generate a configuration file. This can be done using two commands:
 
-```php artisan vendor:publish --tag=bless-ui-config```
+`php artisan vendor:publish --tag=bless-ui-config`
 or
 
-```php artisan blessing-ui:make-config```
+`php artisan blessing-ui:make-config`
 
 **Note**: We recommend using `vendor:publish`, as it already provides the configuration file with pre-defined styles. The `bless-ui:make-config` command should be used if you want to start styling from scratch.
 
@@ -53,58 +52,46 @@ If you are using Tailwindcss, add the `config/bless-ui.php` value to the `conten
 
 ```js
 export default {
+  // ...
   content: [
     // ... another configs
-    'config/bless-ui.php'
-  ]
-}
+    "config/bless-ui.php",
+  ],
+};
 ```
 
-Now, you can modify the classes and themes definitions for all Bless Ui components.
+## How it works?
+
+This configuration file is used to define the styling classes for each Bless UI component. For example, if you want to modify the classes of the `ui::button` component, you must modify the `"button"` key defined in `config/bless-ui.php`
+
+Following this example, the `"base"` key inside `"button"` modifies the main style of `ui::button`. However, if you want to define optional styles, you must define them within the `"themes"` key.
+When you define something in `"themes"`, you can apply these styles through the `theme` property when using `ui::button`.
+
+Example:
 
 ```php
 return [
-    // another definitions
     'button' => [
-        'base' => ['your-base-button-tailwindcss-classes', 'px-5 py-2'],
+        'base' => [
+            'px-5 py-3 duration-500 inline-flex justify-center items-center',
+        ],
         'themes' => [
-            'normal'  => ['bg-zinc-200 text-black'], // this is a default theme for all components
-            'primary' => ['bg-primary text-white hover:bg-black'],
-            'none'    => null,
+            'normal'  => '',
+            'square'  => 'rounded-none border-2 border-black',
+            'rounded' => 'rounded-full p-12',
+            'rounded-primary' => 'rounded-full p-12 bg-primary text-white hover:bg-black',
         ]
     ]
 ];
 ```
 
-The `button` key will be change `x-ui::button` component. 
+```html
+<!-- both is same -->
+<x-ui::button></x-ui::button>
+<x-ui::button theme="normal"></x-ui::button>
 
-
-## Calling the components
-
-```php
-<x-ui::section theme="gradient" class="text-white">
-    <x-ui::container>
-        <x-ui::heading.h1 class="text-center">List Items</x-ui::heading.h1>
-        @foreach($items as $item)
-            <x-ui::card>
-                <x-ui::heading.h2 theme="bold">{{ $item->title }}</x-ui::heading.h2>
-                <p>{{ $item->description }}</p>
-            </x-ui::card>
-        @endforeach
-
-        <!-- theme="normal" -->
-        <x-ui::button>Normal</x-ui::button>
-        <x-ui::button theme="normal">Normal</x-ui::button>
-        <x-ui::button theme="primary">Primary</x-ui::button>
-        <x-ui::button theme="none" class="bg-red-500 text-white"></x-ui::button>
-    </x-ui::container>
-</x-ui::section>
+<x-ui::button theme="square"></x-ui::button>
+<x-ui::button theme="rounded"></x-ui::button>
+<x-ui::button theme="rounded-primary"></x-ui::button>
 ```
-
-
-
-
-## Others
-
-> **Note**: By Default, this package is configured to use with [tailwindcss](https://tailwindcss.com/), but you can use any css framework or package.
 
