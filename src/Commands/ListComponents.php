@@ -60,6 +60,6 @@ class ListComponents extends Command
 
         $name = $key ? $key . '.' . $value : $value;
 
-        return $namespace ? sprintf('%s::%s', config('bless-ui.namespace'), $value) : $value;
+        return $namespace ? sprintf('%s::%s', config('bless-ui.namespace'), $name) : $name;
     }
 }
