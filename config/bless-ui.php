@@ -1,7 +1,7 @@
 <?php
 
-$shadow  = 'shadow-lg';
-$rounded = 'rounded-lg';
+$shadow  = 'shadow-md';
+$rounded = 'rounded-sm';
 $duration = 'duration-200';
 
 return [
@@ -30,7 +30,7 @@ return [
         'select' => [
             'wrapper' => 'relative flex items-center',
             'arrow'   => 'absolute right-3 pointer-events-none dark:text-white text-neutral-800',
-            'base' => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex bg-white outline-none appearance-none font-sans',
+            'base' => 'w-full border-2 px-4 text-lg py-3 border-neutral-300 inline-flex bg-white outline-none appearance-none font-sans',
             'themes' => [
                 'normal' => [],
                 'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
@@ -38,7 +38,10 @@ return [
         ],
 
         'input' => [
-            'base' => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex bg-white outline-none',
+            'base' => [
+                'w-full border-2 px-4 text-lg py-3 border-neutral-300 inline-flex bg-white outline-none',
+                'rounded-sm'
+            ],
             'themes' => [
                 'normal' => [],
                 'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
@@ -47,7 +50,7 @@ return [
 
 
         'textarea' => [
-            'base'   => 'w-full border-b-2 px-6 text-lg py-3 border-zinc-300 inline-flex placeholder:font-sans',
+            'base'   => 'w-full border-b-2 px-6 text-lg py-3 border-neutral-300 inline-flex placeholder:font-sans',
             'themes' => [
                 'normal' => []
             ]
@@ -55,7 +58,11 @@ return [
 
 
         'label' => [
-            'base' => 'block'
+            'base' => [],
+            'themes' => [
+                'normal'   => 'block',
+                'checkbox' => 'inline-flex items-center space-x-2 cursor-pointer select-none'
+            ]
         ],
 
 
@@ -89,6 +96,27 @@ return [
                 'normal' => ['bg-white dark:bg-neutral-800'],
                 'blue'   => ['bg-blue-500 text-white'],
             ]
+        ],
+
+        'checkbox' => [
+            'base' => [
+                'appearance-none h-5 w-5 border-2 border-neutral-500 rotate-90',
+                'rounded-sm',
+                'checked:border-none', 
+                'checked:before:border-blue-500 checked:duration-200',
+                'checked:before:h-5 checked:before:w-4',
+                'checked:before:border-b-4 checked:before:border-r-4',
+                'checked:before:block checked:rotate-45'
+            ]
+        ],
+
+
+        'radio' => [
+            'base' => [
+                'appearance-none h-5 w-5 border-2 border-neutral-500 rotate-90',
+                'rounded-full duration-200 checked:bg-blue-500 checked:border-transparent',
+            ],
+            'themes' => []
         ],
 
         'heading' => [
