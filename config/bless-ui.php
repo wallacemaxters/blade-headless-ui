@@ -18,7 +18,7 @@ return [
         ],
 
         'button' => [
-            'base'   => ['px-5 py-3 duration-500 inline-flex', $rounded],
+            'base'   => ['px-5 py-3 duration-500 inline-flex outline-none', $rounded],
             'themes' => [
                 'normal'    => 'bg-neutral-200 text-neutral-600',
                 'blue'      => 'bg-blue-400 hover:bg-blue-600 text-white',
@@ -39,7 +39,7 @@ return [
 
         'input' => [
             'base' => [
-                'w-full border-2 px-4 text-lg py-3 border-neutral-300 inline-flex bg-white outline-none',
+                'w-full border-2 px-4 py-3 border-neutral-300 inline-flex bg-white outline-none',
                 'rounded-sm'
             ],
             'themes' => [
@@ -50,7 +50,15 @@ return [
 
 
         'textarea' => [
-            'base'   => 'w-full border-b-2 px-6 text-lg py-3 border-neutral-300 inline-flex placeholder:font-sans',
+            'base'   => [
+                'w-full',
+                'border-2 border-neutral-300',
+                'px-4 py-3',
+                'inline-flex',
+                'placeholder:font-sans',
+                'outline-none',
+                $rounded
+            ],
             'themes' => [
                 'normal' => []
             ]
@@ -102,7 +110,7 @@ return [
             'base' => [
                 'appearance-none h-5 w-5 border-2 border-neutral-500 rotate-90',
                 'rounded-sm',
-                'checked:border-none', 
+                'checked:border-none',
                 'checked:before:border-blue-500 checked:duration-200',
                 'checked:before:h-5 checked:before:w-4',
                 'checked:before:border-b-4 checked:before:border-r-4',
