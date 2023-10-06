@@ -1,4 +1,4 @@
-@props(['theme' => 'normal', 'tag' => 'h1'])
+@props(['theme' => 'base', 'tag' => 'h1'])
 @php
 $config = config('bless-ui.components.heading.' . $tag);
 @endphp
