@@ -1,4 +1,5 @@
-![](https://raw.githubusercontent.com/wallacemaxters/arts/master/bless-ui/logo.png)
+<img src="https://raw.githubusercontent.com/wallacemaxters/arts/master/bless-ui/logo.png">
+
 # Bless UI
 
 The Bless UI package is a set of _headless_ Blade components whose styles can be modified via a configuration file. This allows you to create styles for components previously defined by Bless UI, without worrying about their behavior.
