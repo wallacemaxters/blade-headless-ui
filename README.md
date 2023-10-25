@@ -1,3 +1,4 @@
+![](https://raw.githubusercontent.com/wallacemaxters/arts/master/bless-ui/logo.png)
 # Laravel BlessUI
 
 The Bless UI package is a set of _headless_ components whose styles can be modified via a configuration file. This allows you to create styles for components previously defined by Bless UI, without worrying about their behavior.
