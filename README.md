@@ -1,7 +1,8 @@
-![](https://raw.githubusercontent.com/wallacemaxters/arts/master/bless-ui/logo.png)
-# Laravel BlessUI
+<img src="https://raw.githubusercontent.com/wallacemaxters/arts/master/bless-ui/logo.png">
 
-The Bless UI package is a set of _headless_ components whose styles can be modified via a configuration file. This allows you to create styles for components previously defined by Bless UI, without worrying about their behavior.
+# Bless UI
+
+The Bless UI package is a set of _headless_ Blade components whose styles can be modified via a configuration file. This allows you to create styles for components previously defined by Bless UI, without worrying about their behavior.
 
 Bless UI works perfectly with Tailwindcss, but it is also possible to define style classes from other css frameworks.
 
