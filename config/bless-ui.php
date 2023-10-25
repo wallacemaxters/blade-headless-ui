@@ -8,7 +8,7 @@ return [
 
     'namespace' => 'ui',
 
-    'prefix'    => 'x-',
+    'prefix'    => 'ui-',
 
     'components' => [
 
@@ -121,7 +121,7 @@ return [
 
         'checkbox' => [
             'base' => [
-                'appearance-none h-5 w-5 border-2 border-neutral-500 rotate-90',
+                'appearance-none h-5 w-5 flex-none border-2 border-neutral-500 rotate-90',
                 'rounded-sm',
                 'checked:border-none',
                 'checked:before:border-blue-500 checked:duration-200',
