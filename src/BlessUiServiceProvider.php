@@ -2,9 +2,13 @@
 
 namespace WallaceMaxters\BlessUi;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use WallaceMaxters\BlessUi\Commands\ListComponents;
+use WallaceMaxters\BlessUi\Commands\MakeComponent;
 use WallaceMaxters\BlessUi\Commands\MakeConfig;
+use WallaceMaxters\BlessUi\Commands\MakeTailwindcss;
+use WallaceMaxters\BlessUi\Components\Wrapper;
 
 class BlessUiServiceProvider extends ServiceProvider
 {
@@ -22,6 +26,8 @@ class BlessUiServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 MakeConfig::class,
+                MakeTailwindcss::class,
+                MakeComponent::class,
                 ListComponents::class
             ]);
         }
@@ -34,7 +40,7 @@ class BlessUiServiceProvider extends ServiceProvider
         $this->mergeConfigFrom($path, static::$name);
 
         $this->publishes([
-            $path => config_path(static::$name . '.php')
+            $path => $this->app->configPath(static::configFilename())
         ], static::$name . '-config');
     }
 
@@ -42,12 +48,28 @@ class BlessUiServiceProvider extends ServiceProvider
     {
         $path = __DIR__ . '/../resources/views';
 
+        $publishTarget = $this->app->resourcePath(static::componentPublishTarget());
+
         $namespace = $this->app->config->get(static::$name . '.namespace') ?? 'ui';
 
-        $this->loadViewsFrom($path, $namespace);
+        Blade::component(Wrapper::class, 'bless-ui::wrapper');
+
+        Blade::anonymousComponentPath($publishTarget, $namespace);
+        Blade::anonymousComponentPath($path . '/components', $namespace);
 
         $this->publishes([
-            $path => resource_path('views/vendor/' . static::$name),
+            $path => $this->app['files']->dirname($publishTarget),
         ], static::$name . '-views');
+
+    }
+
+    public static function configFileName(): string
+    {
+        return static::$name . '.php';
+    }
+
+    public static function componentPublishTarget()
+    {
+        return 'views/vendor/' . static::$name . '/components/';
     }
 }

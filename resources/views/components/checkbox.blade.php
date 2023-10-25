@@ -1,8 +1,1 @@
-@props(['theme' => 'normal'])
-@php
-$config = config('bless-ui.components.checkbox');
-@endphp
-<input 
-	{{ $attributes->class($config['base'])->class($config['themes'][$theme] ?? null)->merge(['type' => 'checkbox']) }} 
-/>
-
+<x-bless-ui::wrapper type="checkbox" {{ $attributes }} component="checkbox" tag="input" :tag-self-close="true" />

@@ -1,13 +1,7 @@
-@props(['href' => null, 'theme' => 'normal'])
-@php
-$config = config('bless-ui.components.card');
-$tag = ($href === null) ? 'div' : 'a';
-
-@endphp
-<{{ $tag }}
-    {{ $attributes->merge(['href' => $href])
-        ->class($config['base'])
-        ->class($config['themes'][$theme]) }}>
-
+@props(['href' => null])
+<x-bless-ui::wrapper
+    :tag="($href === null) ? 'div' : 'a'"
+    component="card"
+    {{ $attributes->merge(['href' => $href]) }}>
     {{ $content ?? $slot }}
-</{{ $tag }}>
+</x-bless-ui::wrapper>

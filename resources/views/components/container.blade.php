@@ -1,5 +1,1 @@
-@props(['theme' => 'normal'])
-@php
-$config = config('bless-ui.components.container');
-@endphp
-<div {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>{{ $slot }}</div>
+<x-bless-ui::wrapper component="container" {{ $attributes }}>{{ $slot }}</x-bless-ui::wrapper>

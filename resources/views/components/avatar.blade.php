@@ -1,12 +1,8 @@
-@props(['src' => null, 'text' => null, 'theme' => 'normal'])
-@php
-$config = config('bless-ui.components.avatar');
-@endphp
-
-<div {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>
+@props(['src' => null, 'text' => null])
+<x-bless-ui::wrapper component='avatar' {{ $attributes }}>
     @if($src)
-        <img src="{{ $src }}" @class($config['image'] ?? null) >
+        <img src="{{ $src }}" >
     @else
         {{ str($text)->trim()->explode(' ')->map(fn ($t) => $t[0])->join(' ') }}
     @endif
-</div>
+</x-bless-ui::wrapper>

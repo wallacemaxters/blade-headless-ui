@@ -1,5 +1,1 @@
-@props(['theme' => 'normal'])
-@php
-$config = config('bless-ui.components.label');
-@endphp
-<label {{ $attributes->class($config['base'])->class($config['themes'][$theme] ?? null) }}>{{ $slot }}</label>
+<x-bless-ui::wrapper tag="label" component="label" {{ $attributes }}>{{ $slot }}</x-bless-ui::wrapper>

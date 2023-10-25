@@ -1,5 +1,7 @@
-@props(['theme' => 'normal'])
-@php
-$config = config('bless-ui.components.radio');
-@endphp
-<input {{ $attributes->class($config['base'])->class($config['themes'][$theme] ?? null)->merge(['type' => 'radio']) }} />
+<x-bless-ui::wrapper 
+    {{ $attributes }} 
+    type="radio" 
+    tag-self-close 
+    tag="input"
+    component="radio"
+/>

@@ -1,5 +1,1 @@
-@props(['theme' => 'normal'])
-@php
-$config = config('bless-ui.components.input');
-@endphp
-<input {{ $attributes->class($config['base'])->class($config['themes'][$theme] ?? null)->merge(['type' => 'text']) }} />
+<x-bless-ui::wrapper {{ $attributes->merge(['type' => 'text']) }} tag="input" :tag-self-close="true" component="input"></x-bless-ui::wrapper>

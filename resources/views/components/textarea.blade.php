@@ -1,5 +1,2 @@
-@props(['theme' => 'normal', 'value' => null])
-@php
-$config = config('bless-ui.components.textarea');
-@endphp
-<textarea {{ $attributes->class($config['base'])->class($config['themes'][$theme]) }}>{{ $value ?? $slot }}</textarea>
+@props(['value' => null])
+<x-bless-ui::wrapper {{ $attributes }} component="textarea" tag="textarea">{{ $value ?? $slot }}</x-bless-ui::wrapper>
