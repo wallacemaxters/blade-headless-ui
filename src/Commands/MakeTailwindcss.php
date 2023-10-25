@@ -15,7 +15,7 @@ class MakeTailwindcss extends Command
      *
      * @var string
      */
-    protected $signature = 'bless-ui:make-tailwindcss {name=bless-ui} {--color=}';
+    protected $signature = 'bless-ui:make-tailwindcss {name=bless-ui} {--color=primary}';
 
     /**
      * The console command description.
