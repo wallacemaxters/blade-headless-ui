@@ -15,7 +15,7 @@ class MakeTailwindcss extends Command
      *
      * @var string
      */
-    protected $signature = 'bless-ui:make-tailwindcss {name=bless-ui}';
+    protected $signature = 'bless-ui:make-tailwindcss {name=bless-ui} {--color=}';
 
     /**
      * The console command description.
@@ -60,7 +60,7 @@ class MakeTailwindcss extends Command
 
         File::put($filename, $output);
 
-        $this->call('bless-ui:make-config');
+        $this->call('bless-ui:make-config', ['--color' => $this->option('color')]);
     }
 
     protected function generateCssRule(string $component): string
@@ -68,7 +68,7 @@ class MakeTailwindcss extends Command
         $config = $this->config;
 
         $base = (string) implode(
-            ";\n        @apply ", 
+            ";\n        @apply ",
             (array) ($config['components'][$component]['base'] ?? null)
         );
 

@@ -14,7 +14,7 @@ class MakeConfig extends Command
      *
      * @var string
      */
-    protected $signature = 'bless-ui:make-config {--merge=0}';
+    protected $signature = 'bless-ui:make-config {--color=blue-500}';
 
     /**
      * The console command description.
@@ -28,18 +28,18 @@ class MakeConfig extends Command
      */
     public function handle()
     {
-        $isMerge = filter_var($this->option('merge'), FILTER_VALIDATE_BOOL);
-
-        $result = $this->generateConfig($isMerge);
+        $result = $this->generateConfig();
 
         File::put($this->laravel->configPath('bless-ui.php'), $this->arrayToCode($result));
     }
 
-    public function generateConfig(bool $isMerge, ?string $namespace = null): array
+    public function generateConfig(?string $namespace = null): array
     {
         $result = [];
 
         $namespace ??= $this->laravel['config']->get('bless-ui.namespace');
+
+        $color = $this->option('color');
 
         foreach (ListComponents::getComponents() as $item) {
 
@@ -53,11 +53,7 @@ class MakeConfig extends Command
 
             $config = null;
 
-            if ($isMerge) {
-                $config = $this->laravel['config']->get('bless-ui.components.' . $configKey);
-            }
-
-            $itemConfig = $config ?? [
+            $itemConfig = [
                 // 'base'     => [],
                 'variants' => match ($configKey) {
                     'h1', 'h2', 'h3', 'h4', 'h5', 'h6' => [
@@ -65,13 +61,16 @@ class MakeConfig extends Command
                         'bold'   => 'font-bold',
                     ],
                     'button' => [
-                        'normal'   => null,
-                        'outlined' => 'border-2 border-current text-black',
-                        'solid'    => 'bg-black text-white'
+                        'normal'   => $color ? "bg-{$color} text-white" : '',
+                        'outlined' => $color ? "border-2 border-current font-bold text-{$color}" : null,
                     ],
                     'label' => [
                         'normal'   => 'block',
                         'checkbox' => 'inline-flex items-center space-x-2 cursor-pointer select-none'
+                    ],
+
+                    'card' => [
+                        'normal' => 'bg-white',
                     ],
                     default => []
                 }
