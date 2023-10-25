@@ -4,6 +4,7 @@ namespace WallaceMaxters\BlessUi\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Finder\Finder;
+use Illuminate\Support\Facades\Config;
 use Symfony\Component\Finder\SplFileInfo;
 
 class ListComponents extends Command
@@ -16,7 +17,8 @@ class ListComponents extends Command
     public function handle()
     {
         $result = [];
-        $namespace = config('bless-ui.namespace');
+        
+        $namespace = Config::get('bless-ui.namespace');
 
         foreach (static::getComponents() as $item) {
 
@@ -60,6 +62,6 @@ class ListComponents extends Command
 
         $name = $key ? $key . '.' . $value : $value;
 
-        return $namespace ? sprintf('%s::%s', config('bless-ui.namespace'), $name) : $name;
+        return $namespace ? sprintf('%s::%s', Config::get('bless-ui.namespace'), $name) : $name;
     }
 }
