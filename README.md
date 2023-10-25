@@ -21,16 +21,17 @@ After installation, you can make the components available for use in your Blade 
 | ui::avatar     |
 | ui::button     |
 | ui::card       |
+| ui::checkbox   |
 | ui::container  |
-| ui::heading.h1 |
-| ui::heading.h2 |
-| ui::heading.h3 |
-| ui::heading.h4 |
-| ui::heading.h5 |
-| ui::heading.h6 |
-| ui::heading    |
+| ui::h1         |
+| ui::h2         |
+| ui::h3         |
+| ui::h4         |
+| ui::h5         |
+| ui::h6         |
 | ui::input      |
 | ui::label      |
+| ui::radio      |
 | ui::section    |
 | ui::select     |
 | ui::textarea   |
@@ -42,7 +43,7 @@ To start using Bless UI, you need to generate a configuration file. This can be 
 `php artisan vendor:publish --tag=bless-ui-config`
 or
 
-`php artisan blessing-ui:make-config`
+`php artisan bless-ui:make-config`
 
 **Note**: We recommend using `vendor:publish`, as it already provides the configuration file with pre-defined styles. The `bless-ui:make-config` command should be used if you want to start styling from scratch.
 
@@ -64,8 +65,8 @@ export default {
 
 This configuration file is used to define the styling classes for each Bless UI component. For example, if you want to modify the classes of the `ui::button` component, you must modify the `"button"` key defined in `config/bless-ui.php`
 
-Following this example, the `"base"` key inside `"button"` modifies the main style of `ui::button`. However, if you want to define optional styles, you must define them within the `"themes"` key.
-When you define something in `"themes"`, you can apply these styles through the `theme` property when using `ui::button`.
+Following this example, the `"base"` key inside `"button"` modifies the main style of `ui::button`. However, if you want to define optional styles, you must define them within the `"variants"` key.
+When you define something in `"variants"`, you can apply these styles through the `variant` property when using `ui::button`.
 
 Example:
 
@@ -75,7 +76,7 @@ return [
         'base' => [
             'px-5 py-3 duration-500 inline-flex justify-center items-center',
         ],
-        'themes' => [
+        'variants' => [
             'normal'  => '',
             'square'  => 'rounded-none border-2 border-black',
             'rounded' => 'rounded-full p-12',
@@ -88,10 +89,41 @@ return [
 ```html
 <!-- both is same -->
 <x-ui::button></x-ui::button>
-<x-ui::button theme="normal"></x-ui::button>
+<x-ui::button variant="normal"></x-ui::button>
 
-<x-ui::button theme="square"></x-ui::button>
-<x-ui::button theme="rounded"></x-ui::button>
-<x-ui::button theme="rounded-primary"></x-ui::button>
+<x-ui::button variant="square"></x-ui::button>
+<x-ui::button variant="rounded"></x-ui::button>
+<x-ui::button variant="rounded-primary"></x-ui::button>
 ```
+
+## Using the CSS
+
+If you don't want to use `config/bless-ui.php` file to define the styles of Bless UI components, you can generate the CSS File. 
+
+Using the `php artisan bless-ui:make-tailwindcss` command, you will generate a css file with the default definitions of the Bless UI components, which you can also change as you wish.
+
+In Bless UI, we use Tailwindcss to generate the css file.
+
+```bash
+php artisan bless-ui:make-tailwindcss
+# or
+php artisan bless-ui:make-tailwindcss custom-bless-ui
+```
+
+The command above will generate the `resources/css/bless-ui.css`, or `resources/css/custom-bless-ui.css` in second case.
+
+## Generate Custom Components
+
+If you want to use the same structure of Bless UI to make your custom components, you can use the `bless-ui:make-component` command.
+
+For example:
+
+```bash
+php artisan bless-ui:make-component hero
+```
+
+The file `resources/views/vendor/bless-ui/components/hero.blade.php` will be generated.
+
+You should be insert the `'hero'` in `'components'` section of `config/bless-ui.php` file to define styles for your generated component.
+
 
