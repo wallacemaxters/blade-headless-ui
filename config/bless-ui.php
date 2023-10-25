@@ -23,9 +23,7 @@ return [
             'base'   => ['px-5 py-3 duration-500 inline-flex outline-none', $rounded],
             'variants' => [
                 'normal'    => 'bg-neutral-200 text-neutral-600',
-                'blue'      => 'bg-blue-400 hover:bg-blue-600 text-white',
                 'primary'   => 'bg-primary hover:bg-primary text-white',
-                'secondary' => 'bg-secondary hover:bg-zinc-800 text-white',
             ]
         ],
 
@@ -35,7 +33,6 @@ return [
             'base' => [
                 'relative',
                 'w-full',
-                'border-neutral-300',
                 'inline-flex items-center',
                 'bg-white',
                 'outline-none font-sans border-2',
@@ -45,19 +42,19 @@ return [
                 '[&>svg]:right-2 [&>svg]:absolute [&>svg]:pointer-events-none'
             ],
             'variants' => [
-                'normal' => [],
-                'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
+                'normal'  => 'border-neutral-300',
+                'primary' => 'border-primary',
             ]
         ],
 
         'input' => [
             'base' => [
-                'w-full border-2 px-4 py-3 border-neutral-300 inline-flex bg-white outline-none',
+                'w-full border-2 px-4 py-3 inline-flex bg-white outline-none',
                 'rounded-sm'
             ],
             'variants' => [
-                'normal' => [],
-                'blue'   => 'bg-blue-400 hover:bg-blue-600 text-white',
+                'normal'  => 'border-neutral-300',
+                'primary' => 'border-primary',
             ]
         ],
 
@@ -65,15 +62,16 @@ return [
         'textarea' => [
             'base'   => [
                 'w-full',
-                'border-2 border-neutral-300',
+                'border-2',
                 'px-4 py-3',
-                'inline-flex',
                 'placeholder:font-sans',
                 'outline-none',
-                $rounded
+                'rounded-md',
+                'inline-flex',
             ],
             'variants' => [
-                'normal' => []
+                'normal'  => 'border-neutral-300',
+                'primary' => 'border-primary',
             ]
         ],
 
@@ -94,9 +92,11 @@ return [
                 'bg-neutral-200',
                 'flex items-center justify-center',
                 'overflow-hidden',
-                $shadow
+                $shadow,
+
+                '[&>img]:h-full [&>img]:w-full',
+                '[&>img]:object-cover [&>img]:object-center',
             ],
-            'image'  => ['h-full w-full', 'object-cover object-center'],
             'variants' => [
                 'normal' => []
             ]
@@ -111,33 +111,42 @@ return [
         ],
 
         'card' => [
-            'base' => [$shadow, $rounded, 'p-8'],
+            'base' => ['shadow-md', 'rounded-md', 'p-8'],
             'variants' => [
-                'none'   => [],
-                'normal' => ['bg-white dark:bg-neutral-800'],
-                'blue'   => ['bg-blue-500 text-white'],
+                'normal'  => ['bg-white dark:bg-neutral-800'],
+                'primary' => ['bg-primary text-white'],
             ]
         ],
 
         'checkbox' => [
             'base' => [
-                'appearance-none h-5 w-5 flex-none border-2 border-neutral-500 rotate-90',
+                'appearance-none',
+                'h-5 w-5 flex-none',
+                'border-2',
+                'rotate-90',
                 'rounded-sm',
                 'checked:border-none',
                 'checked:before:border-blue-500 checked:duration-200',
                 'checked:before:h-5 checked:before:w-4',
                 'checked:before:border-b-4 checked:before:border-r-4',
                 'checked:before:block checked:rotate-45'
+            ],
+            'variants' => [
+                'normal'  => 'border-neutral-500',
+                'primary' => 'border-primary'
             ]
         ],
 
 
         'radio' => [
             'base' => [
-                'appearance-none h-5 w-5 border-2 border-neutral-500',
+                'appearance-none h-5 w-5 border-2',
                 'rounded-full duration-200 checked:bg-blue-500 checked:border-transparent',
             ],
-            'variants' => []
+            'variants' => [
+                'normal'  => 'border-neutral-500',
+                'primary' => 'border-primary'
+            ]
         ],
 
         'h1' => [
