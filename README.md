@@ -104,6 +104,8 @@ Using the `php artisan bless-ui:make-tailwindcss` command, you will generate a c
 
 In Bless UI, we use Tailwindcss to generate the css file.
 
+For example:
+
 ```bash
 php artisan bless-ui:make-tailwindcss
 # or
@@ -111,6 +113,30 @@ php artisan bless-ui:make-tailwindcss custom-bless-ui
 ```
 
 The command above will generate the `resources/css/bless-ui.css`, or `resources/css/custom-bless-ui.css` in second case.
+
+Now, you can add this generated file to your Blade layout.
+
+```html
+<head>
+    <!-- ... -->
+    @vite(['resources/css/bless-ui.css'])
+</head>
+```
+
+And your `vite.config.js` file:
+
+```javascript
+export default defineConfig({
+    plugins: [
+        laravel({
+            input: ['resources/css/bless-ui.css'],
+            refresh: true,
+        }),
+    ],
+});
+
+```
+
 
 ## Generate Custom Components
 
