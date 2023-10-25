@@ -30,7 +30,16 @@ class MakeConfig extends Command
     {
         $isMerge = filter_var($this->option('merge'), FILTER_VALIDATE_BOOL);
 
+        $result = $this->generateConfig($isMerge);
+
+        File::put($this->laravel->configPath('bless-ui.php'), $this->arrayToCode($result));
+    }
+
+    public function generateConfig(bool $isMerge, ?string $namespace = null): array
+    {
         $result = [];
+
+        $namespace ??= $this->laravel['config']->get('bless-ui.namespace');
 
         foreach (ListComponents::getComponents() as $item) {
 
@@ -45,14 +54,27 @@ class MakeConfig extends Command
             $config = null;
 
             if ($isMerge) {
-                $config = config('bless-ui.components.' . $configKey);
+                $config = $this->laravel['config']->get('bless-ui.components.' . $configKey);
             }
 
             $itemConfig = $config ?? [
-                'base'   => $key ? sprintf('ui-%s-%s', $key, $value) : 'ui-' . $value,
-                'themes' => [
-                    'normal' => []
-                ]
+                // 'base'     => [],
+                'variants' => match ($configKey) {
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6' => [
+                        'normal' => 'font-normal',
+                        'bold'   => 'font-bold',
+                    ],
+                    'button' => [
+                        'normal'   => null,
+                        'outlined' => 'border-2 border-current text-black',
+                        'solid'    => 'bg-black text-white'
+                    ],
+                    'label' => [
+                        'normal'   => 'block',
+                        'checkbox' => 'inline-flex items-center space-x-2 cursor-pointer select-none'
+                    ],
+                    default => []
+                }
             ];
 
             if ($key) {
@@ -62,13 +84,15 @@ class MakeConfig extends Command
             }
         }
 
-        File::put(config_path('bless-ui.php'), $this->arrayToCode($result));
+        return $result;
     }
 
     protected function arrayToCode(array $array): string
     {
+
         $config = [
-            'namespace'  => config('bless-ui.namespace'),
+            'namespace'  => $this->laravel['config']->get('bless-ui.namespace'),
+            'prefix'     => $this->laravel['config']->get('bless-ui.prefix'),
             'components' => $array
         ];
 
