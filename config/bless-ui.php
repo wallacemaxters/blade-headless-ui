@@ -42,8 +42,8 @@ return [
                 '[&>svg]:right-2 [&>svg]:absolute [&>svg]:pointer-events-none'
             ],
             'variants' => [
-                'normal'  => 'border-neutral-300',
-                'primary' => 'border-primary',
+                'normal'  => 'border-neutral-300 dark:bg-neutral-900',
+                'primary' => 'border-primary dark:bg-neutral-900',
             ]
         ],
 
@@ -53,8 +53,8 @@ return [
                 'rounded-sm'
             ],
             'variants' => [
-                'normal'  => 'border-neutral-300',
-                'primary' => 'border-primary',
+                'normal'  => 'border-neutral-300 dark:bg-neutral-900',
+                'primary' => 'border-primary dark:bg-neutral-900',
             ]
         ],
 
@@ -70,8 +70,8 @@ return [
                 'inline-flex',
             ],
             'variants' => [
-                'normal'  => 'border-neutral-300',
-                'primary' => 'border-primary',
+                'normal'  => 'border-neutral-300 dark:bg-neutral-900',
+                'primary' => 'border-primary dark:bg-neutral-900',
             ]
         ],
 
