@@ -14,7 +14,7 @@ class Wrapper extends ViewComponent
     public function __construct(
         string $component,
         string $tag = 'div',
-        string $variant = 'normal',
+        string|array $variant = 'normal',
         bool $tagSelfClose = false
     ) {
         $this->blessUi = compact('component', 'tag', 'variant', 'tagSelfClose');
@@ -33,7 +33,7 @@ class Wrapper extends ViewComponent
             $componentClass = Config::get('bless-ui.prefix') . $this->blessUi['component'];
 
             $baseClasses = $config['base'] ?? null;
-            $variantClasses = $config['variants'][$this->blessUi['variant']] ?? null;
+            $variantClasses = collect((array) $this->blessUi['variant'])->map(fn ($key) => $config['variants'][$key] ?? null)->flatten()->toArray();
 
             $attributes = $data['attributes']
                 ->class($baseClasses)
